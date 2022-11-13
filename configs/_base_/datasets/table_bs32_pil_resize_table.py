@@ -1,6 +1,7 @@
 # dataset settings
 dataset_type = 'Table'
 classes = ["FIGURE", "BBT", "LOGO", "BORDER", "NATURAL", "TABLE"]
+data_dir = "../../input/illustration-classification/"
 img_norm_cfg = dict(
     mean=[227.10889537, 225.41170933, 224.90065103], std=[44.78552276, 46.04599916, 45.4019016], to_rgb=True)
 train_pipeline = [
@@ -25,24 +26,21 @@ data = dict(
     workers_per_gpu=1,
     train=dict(
         type=dataset_type,
-        # data_prefix='data/imagenet/train',
-        data_prefix = '/home/null/table_dataset/data/train',
-        ann_file='/home/null/table_dataset/data/anns/train.txt',
-        classes = classes,
+        data_prefix=data_dir + 'train',
+        ann_file=data_dir + 'anns/train.txt',
+        classes=classes,
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        data_prefix='/home/null/table_dataset/data/valid',
-        # ann_file='/home/null/table_dataset/data/anns/valid.txt',
-        ann_file='/home/null/table_dataset/data/anns/valid.txt',
+        data_prefix=data_dir + 'valid',
+        ann_file=data_dir + 'anns/valid.txt',
         classes = classes,
         pipeline=test_pipeline),
     test=dict(
         # replace `data/val` with `data/test` for standard test
         type=dataset_type,
-        data_prefix='/home/null/table_dataset/data/test',
-        # ann_file='/home/null/table_dataset/data/anns/test.txt',
-        ann_file='/home/null/table_dataset/data/anns/test.txt',
+        data_prefix=data_dir + 'test',
+        ann_file=data_dir + 'anns/test.txt',
         classes = classes,
         pipeline=test_pipeline))
 evaluation = dict(interval=5, metric='accuracy')
