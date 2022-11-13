@@ -5,6 +5,7 @@ import os
 import os.path as osp
 import time
 import warnings
+import wandb
 
 import mmcv
 import torch
@@ -172,6 +173,7 @@ def main():
     cfg.seed = seed
     meta['seed'] = seed
 
+    wandb.init(project="Classification", config=cfg, sync_tensorboard=True)
     model = build_classifier(cfg.model)
     model.init_weights()
 
