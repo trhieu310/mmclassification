@@ -58,4 +58,4 @@ data = dict(
         ann_file=data_dir + 'anns/test.txt',
         classes=classes,
         pipeline=test_pipeline))
-evaluation = dict(interval=1, metric=['accuracy', 'f1_score', 'recall', 'precision', 'loss'])
+evaluation = dict(interval=1, metric='accuracy')
